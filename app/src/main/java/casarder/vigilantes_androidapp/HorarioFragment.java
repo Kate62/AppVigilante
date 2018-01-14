@@ -79,52 +79,53 @@ public class HorarioFragment extends Fragment {
     public void createHoursButton(JSONObject actualRounds) throws JSONException {
         LinearLayout inc_layout = (LinearLayout) rootView.findViewById(R.id.buttonsLinearLayout);
         LayoutInflater li = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //DEL - getActivity().getIntent().putExtra("round", actualRounds.toString());
-        //JSONArray rounds = actualRounds.getJSONArray("rounds");
-        /*for (int i = 0; i < rounds.length(); i++) {
-            final JSONObject round = new JSONObject(rounds.get(i).toString());
-            View buttons_layout = li.inflate(R.layout.button_horario_layout, null);
-            buttons_layout.setId(i);
+        if(actualRounds!=null) {
+            JSONArray rounds = actualRounds.getJSONArray("rounds");
+            for (int i = 0; i < rounds.length(); i++) {
+                final JSONObject round = new JSONObject(rounds.get(i).toString());
+                View buttons_layout = li.inflate(R.layout.button_horario_layout, null);
+                buttons_layout.setId(i);
 
 
-            Button hours = (Button) buttons_layout.findViewById(R.id.bt);
-            String h = getTimeRangeFromPath(rounds, i);
-            hours.setText(h);
+                Button hours = (Button) buttons_layout.findViewById(R.id.bt);
+                String h = getTimeRangeFromPath(rounds, i);
+                hours.setText(h);
 
-            inc_layout.addView(buttons_layout);
+                inc_layout.addView(buttons_layout);
 
-            buttons_layout.findViewById(R.id.bt).setOnClickListener(new View.OnClickListener() {
+                buttons_layout.findViewById(R.id.bt).setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View view) {
-                    final Dialog dialog = new Dialog(getContext());
-                    dialog.setContentView(R.layout.time_line_dialog);
-                    dialog.setTitle("Percurso");
+                    @Override
+                    public void onClick(View view) {
+                        final Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.time_line_dialog);
+                        dialog.setTitle("Percurso");
 
-                    try {
-                        createLinearLayoutPercurso(dialog, round);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-                    // if button is clicked, close the custom dialog
-                    dialogButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
+                        try {
+                            createLinearLayoutPercurso(dialog, round);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    });
+
+                        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                        // if button is clicked, close the custom dialog
+                        dialogButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
 
 
-                    dialog.show();
-                }
-            });
+                        dialog.show();
+                    }
+                });
 
 
-        }*/
+            }
+        }
 
-        for (int i = 0; i < 1; i++) {
+       /* for (int i = 0; i < 1; i++) {
             View buttons_layout = li.inflate(R.layout.button_horario_layout, null);
             buttons_layout.setId(i);
 
@@ -164,7 +165,7 @@ public class HorarioFragment extends Fragment {
             });
 
 
-        }
+        }*/
     }
 
     private String getTimeRangeFromPath(JSONArray rounds, int i) throws JSONException {
@@ -192,31 +193,31 @@ public class HorarioFragment extends Fragment {
         LinearLayout inc_layout = (LinearLayout) dialog.findViewById(R.id.timeLinesinearLayout);
         LayoutInflater li = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-       /* JSONArray path = round.getJSONArray("path");*/
-        JSONArray info = null;
-        String init = "";
+        if (round != null) {
+            JSONArray path = round.getJSONArray("path");
+            JSONArray info = null;
+            String init = "";
 
-       /* for (int i = 0; i < path.length(); i++) {*/
-        for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < path.length(); i++) {
 
-            /*
-            info = path.getJSONArray(i);
-            if (i == 0) init = info.getString(2);
-            View time_layout = li.inflate(R.layout.time_line, null);
-            time_layout.setId(i);
 
-            TextView submittedHours = (TextView) time_layout.findViewById(R.id.horas);
-            submittedHours.setText(ParsingUtils.hourToString(info.getInt(0), "h"));
+                info = path.getJSONArray(i);
+                if (i == 0) init = info.getString(2);
+                View time_layout = li.inflate(R.layout.time_line, null);
+                time_layout.setId(i);
 
-            TextView submittedFacility = (TextView) time_layout.findViewById(R.id.nomeFacility);
-            submittedFacility.setText(info.getString(2));
+                TextView submittedHours = (TextView) time_layout.findViewById(R.id.horas);
+                submittedHours.setText(ParsingUtils.hourToString(info.getInt(0), "h"));
+
+                TextView submittedFacility = (TextView) time_layout.findViewById(R.id.nomeFacility);
+                submittedFacility.setText(info.getString(2));
 
             /*TextView submittedDescription = (TextView) time_layout.findViewById(R.id.descricao);
             submittedDescription.setText("description");*/
 
-            /*inc_layout.addView(time_layout);*/
+                inc_layout.addView(time_layout);
 
-
+           /* for (int i = 0; i < 8; i++) {
             View time_layout = li.inflate(R.layout.time_line, null);
             time_layout.setId(i);
 
@@ -230,11 +231,12 @@ public class HorarioFragment extends Fragment {
             /*TextView submittedDescription = (TextView) time_layout.findViewById(R.id.descricao);
             submittedDescription.setText("description");*/
 
-            inc_layout.addView(time_layout);
+          /*  inc_layout.addView(time_layout);*/
 
+            }
+            changeDirection(dialog, "Complex", init, info.getString(2));
+            //changeDirection(dialog, "Complex1", "Faciity1", "Facility8");
         }
-        /*changeDirection(dialog, "Complex", init, info.getString(2));*/
-        changeDirection(dialog, "Complex1", "Faciity1", "Facility8");
     }
 
 }

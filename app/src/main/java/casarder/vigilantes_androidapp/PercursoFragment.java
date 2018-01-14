@@ -89,58 +89,59 @@ public class PercursoFragment extends Fragment {
         String init = "";
         boolean in = false;
 
-        //JSONArray rounds = actualRounds.getJSONArray("rounds");
-        /*for (int i = 0; i < rounds.length(); i++) {*/
-        for (int i = 0; i < 1; i++) {
+        if(actualRounds!=null) {
+            JSONArray rounds = actualRounds.getJSONArray("rounds");
+            for (int i = 0; i < rounds.length(); i++) {
 
-           /* if (getTimeRangeFromPath(rounds, i)) {
-                in = true;
-                JSONObject round = new JSONObject(rounds.get(i).toString());
-                JSONArray path = round.getJSONArray("path");
+                if (getTimeRangeFromPath(rounds, i)) {
+                    in = true;
+                    JSONObject round = new JSONObject(rounds.get(i).toString());
+                    JSONArray path = round.getJSONArray("path");
 
-                for (int j = 0; j < path.length(); j++) {
-                    info = path.getJSONArray(j);
-                    if (i == 0) init = info.getString(2);
-                    View time_layout = li.inflate(R.layout.time_line, null);
-                    time_layout.setId(contId);
+                    for (int j = 0; j < path.length(); j++) {
+                        info = path.getJSONArray(j);
+                        if (i == 0) init = info.getString(2);
+                        View time_layout = li.inflate(R.layout.time_line, null);
+                        time_layout.setId(contId);
 
-                    TextView submittedHours = (TextView) time_layout.findViewById(R.id.horas);
-                    submittedHours.setText(ParsingUtils.hourToString(info.getInt(0), "h"));
+                        TextView submittedHours = (TextView) time_layout.findViewById(R.id.horas);
+                        submittedHours.setText(ParsingUtils.hourToString(info.getInt(0), "h"));
 
-                    TextView submittedFacility = (TextView) time_layout.findViewById(R.id.nomeFacility);
-                    submittedFacility.setText(info.getString(2));
+                        TextView submittedFacility = (TextView) time_layout.findViewById(R.id.nomeFacility);
+                        submittedFacility.setText(info.getString(2));
 
-            /*TextView submittedDescription = (TextView) time_layout.findViewById(R.id.descricao);
-            submittedDescription.setText("description");*/
+                        /*TextView submittedDescription = (TextView) time_layout.findViewById(R.id.descricao);
+                        submittedDescription.setText("description");*/
 
-                    /*inc_layout.addView(time_layout);
+                        inc_layout.addView(time_layout);
+                    }
+
+                   /* for (int i = 0; i < 1; i++) {
+                        for (int j = 0; j < 8; j++) {
+                            in = true;
+                            View time_layout = li.inflate(R.layout.time_line, null);
+                            time_layout.setId(contId);
+
+                            //time_layout.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, 180));
+
+                            TextView submittedHours = (TextView) time_layout.findViewById(R.id.horas);
+                            submittedHours.setText("0" +(6+j+1)+ "h00");
+
+                            TextView submittedFacility = (TextView) time_layout.findViewById(R.id.nomeFacility);
+                            submittedFacility.setText("facility" + (j+1));
+
+                        /*TextView submittedDescription = (TextView) time_layout.findViewById(R.id.descricao);
+                        submittedDescription.setText("description");*/
+
+                           /* inc_layout.addView(time_layout);
+                        }*/
+                    count = 0;
+                    if (in) {
+                        changeDirection(rootView, "Complex", init, info.getString(2));
+                        // changeDirection(rootView, "Complex1", "Facility1", "Facility8");
+                    }
                 }
-*/
-
-            for (int j = 0; j < 8; j++) {
-                in = true;
-                View time_layout = li.inflate(R.layout.time_line, null);
-                time_layout.setId(contId);
-
-                //time_layout.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, 180));
-
-                TextView submittedHours = (TextView) time_layout.findViewById(R.id.horas);
-                submittedHours.setText("0" +(6+j+1)+ "h00");
-
-                TextView submittedFacility = (TextView) time_layout.findViewById(R.id.nomeFacility);
-                submittedFacility.setText("facility" + (j+1));
-
-            /*TextView submittedDescription = (TextView) time_layout.findViewById(R.id.descricao);
-            submittedDescription.setText("description");*/
-
-                inc_layout.addView(time_layout);
             }
-            count = 0;
-            if (in) {
-            /*changeDirection(rootView, "Complex", init, info.getString(2));*/
-                changeDirection(rootView, "Complex1", "Facility1", "Facility8");
-            }
-
         }
     }
 

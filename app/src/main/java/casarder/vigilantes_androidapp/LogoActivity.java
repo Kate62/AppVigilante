@@ -35,7 +35,7 @@ public class LogoActivity extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String saved_uname = "username";
     public static final String saved_upass = "password";
-    final String url = "http://casardercdio.ddns.net:22000/users/";
+    final String url = "http://casardercdio.ddns.net:22003/users/";
     ImageView image;
     Animation uptodown;
     EditText login_username, login_password;

@@ -34,7 +34,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private final String url = "http://casardercdio.ddns.net:22000/";
+    private final String url = "http://casardercdio.ddns.net:22003/";
     private String token;
 
     private HorarioFragment horarioFragment;
